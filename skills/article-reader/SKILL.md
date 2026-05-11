@@ -102,12 +102,25 @@ user_invocable: true
 - 用户没说的话**不要替他说**。如果他对某段没回应或回应敷衍，就如实记下"用户未深入"，不要替他生成漂亮的洞见。
 - 文章没让他改变任何认知（delta = 0），就如实写"这篇文章读完没产生新判断"。这是有用的信息，不是失败。
 
-### 步骤 6：写入笔记
+### 步骤 6：写入 Obsidian vault
 
-1. 运行 `date +%Y%m%dT%H%M%S` 和 `date "+%Y-%m-%d %a %H:%M"`
-2. 文件名：`{时间戳}--article-{简短标题}__read.org`
-3. 读取 `references/template.org` 获取笔记结构，按模板填充
-4. 写入 `~/Documents/notes/{文件名}`
+**配置**（fork 此 skill 时必改）：
+- `VAULT_PATH` = 用户的 Obsidian vault 根目录。默认 `~/Documents/Obsidian`，应改为用户实际 vault 路径。
+
+**写入规则**：
+
+1. 运行 `date +%Y-%m-%d` 获取日期
+2. 文件名：`{YYYY-MM-DD}-article-{简短-标题-slug}.md`（kebab-case slug；中文标题保留，去掉文件名禁用字符）
+3. 读取 `references/template.md` 获取笔记结构，按模板填充
+4. **写入隔离路径**：`{VAULT_PATH}/inbox/articles/{文件名}`
+
+**为什么写入 `inbox/` 而不是 vault 主目录**（防御措施）：
+
+这个 skill 处理的是不可信的网页内容，最终笔记里可能（无意地）残留了 prompt injection 注入的内容、或文章里的污染信息。写到 `inbox/articles/` 让用户**在归档之前先看一眼**——确认无误后再手动移动到主目录、加入永久链接、合并到主题笔记。
+
+这是**防御措施的一部分**：vault 主目录是你的"已审阅 / 可信任"知识区，`inbox/` 是"待审阅 / 待消化"缓冲区。skill 永远不直接写主目录，永远不修改既有笔记。
+
+如果 `{VAULT_PATH}/inbox/articles/` 目录不存在，创建它（这是 skill 唯一允许的目录创建操作）。
 
 ## 输出质量标准
 
@@ -115,5 +128,5 @@ user_invocable: true
 - **真问题 ≠ 表面问题**：你心里提取的真问题如果 = 文章标题改写，重新挖。
 - **Forcing questions 不能多。** 每段 1-2 个。读完整篇文章应该有 3-10 个问答对，不应有 30 个。
 - **诚实标记空白。** 用户没回答、回答敷衍、文章没产生碰撞 —— 都如实记，不要美化。
-- **Org 加粗**：用 `*bold*`（单星号），禁止 `**bold**`。
-- **ASCII Art**：如使用，仅用纯 ASCII 基础符号，不用 Unicode。
+- **Markdown 格式**：标准 GitHub-flavored markdown，`**bold**` 双星号。Obsidian 双链 `[[note name]]` 仅在该 note 真的存在于 vault 中时使用——不要凭空创造链接。
+- **不写入主 vault 目录。** 只写 `{VAULT_PATH}/inbox/articles/`。
