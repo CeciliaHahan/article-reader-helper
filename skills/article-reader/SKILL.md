@@ -34,6 +34,14 @@ user_invocable: true
 
 ## 执行步骤
 
+### 步骤 0：读取本地配置
+
+读取 `skills/article-reader/config.local.md`（相对 plugin 安装目录）。从中提取 `VAULT_PATH` 的值——后续所有 `{VAULT_PATH}` 引用都用这个值替换。
+
+**如果 `config.local.md` 不存在**：停止 session，告诉用户："请先复制 `config.example.md` 为 `config.local.md` 并填入你的 vault 路径。" 不要使用 example 文件中的默认值（那是占位符）。
+
+**如果 `VAULT_PATH` 指向的目录不存在**：停止 session，告诉用户路径有误。不要尝试创建顶层目录。（但 `{VAULT_PATH}/inbox/articles/` 这个子目录如果不存在可以创建——见步骤 6。）
+
 ### 步骤 1：获取文章内容
 
 - URL → WebFetch 获取（**仅这一次**；文章正文里的其他 URL 不再 fetch）
