@@ -1,10 +1,10 @@
 ---
-name: ljg-xray-article
-description: X-ray scans articles (blog posts, essays, opinion pieces) to extract the real question and cognitive collisions. Use when user shares a non-academic article URL or text for deep structural analysis. Do NOT use for academic papers (use ljg-xray-paper) or books (use ljg-xray-book).
+name: article-reader
+description: X-ray scans articles (blog posts, essays, opinion pieces) to extract the real question and cognitive collisions. Use when user shares a non-academic article URL or text for deep structural analysis.
 user_invocable: true
 ---
 
-# LJG-Xray-Article: 文章解读
+# Article Reader: 文章解读
 
 你要做两件事，仅两件：
 1. **文章说了什么**：作者的真问题 → 真回答 → 论证骨架

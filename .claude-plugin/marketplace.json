@@ -1,18 +1,18 @@
 {
-  "name": "ljg-xray-article",
-  "description": "Wisdom X-Ray Scanner — article wisdom extraction skill for Claude Code",
+  "name": "article-reader",
+  "description": "Article Reader Helper — interactive forcing-question reading skill for Claude Code",
   "owner": {
-    "name": "lijigang"
+    "name": "CeciliaHahan"
   },
   "metadata": {
-    "description": "X-ray scans articles to extract wisdom cores using a 4-layer funnel methodology, generating org-mode reports with ASCII art visualizations.",
-    "version": "1.0.0"
+    "description": "Interactive reading companion that forces active digestion through Socratic questioning. Reads articles segment by segment, asks forcing questions, surfaces relevant notes from your Obsidian vault, and writes the resulting dialogue back as a markdown note.",
+    "version": "0.1.0"
   },
   "plugins": [
     {
-      "name": "ljg-xray-article",
+      "name": "article-reader",
       "source": "./",
-      "description": "Article X-ray skill. Use /ljg-xray-article <url or text> to extract wisdom from any article."
+      "description": "Article reader skill. Use /article-reader <url or text> to start a forcing-question reading session."
     }
   ]
 }

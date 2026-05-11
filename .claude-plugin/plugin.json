@@ -1,7 +1,7 @@
 {
-  "name": "ljg-xray-article",
-  "description": "Wisdom X-Ray Scanner — extracts wisdom cores from articles using 4-layer funnel methodology. Produces org-mode output with ASCII art.",
+  "name": "article-reader",
+  "description": "Interactive reading companion. Forces active digestion through Socratic forcing questions, anchored to your Obsidian vault.",
   "author": {
-    "name": "lijigang"
+    "name": "CeciliaHahan"
   }
 }
