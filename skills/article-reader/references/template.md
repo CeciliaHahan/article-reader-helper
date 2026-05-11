@@ -4,6 +4,7 @@ date: {YYYY-MM-DD}
 source: {URL}
 author: {作者，如有}
 status: inbox
+reading_mode: {A | B | C}  # A=parallel reading, B=chat-internal reading, C=guided commentary (用户没读原文)
 tags: [article, read, inbox]
 ---
 
