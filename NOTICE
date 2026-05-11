@@ -1,0 +1,17 @@
+Article Reader Helper
+=====================
+
+This project is derived from work by lijigang.
+
+Upstream:  https://github.com/lijigang/ljg-skill-xray-article
+License:   MIT (Copyright (c) 2026 lijigang)
+Imported:  2026-05-11
+
+The initial structure of `skills/article-reader/` — including SKILL.md,
+references/methodology.md, references/template.org — and the `.claude-plugin/`
+metadata were imported verbatim from the upstream project.
+
+Subsequent commits adapt this code to a different design goal: transforming
+the original batch analysis workflow into an interactive forcing-question
+reading companion anchored to an Obsidian vault. See DESIGN.md for the full
+rationale.

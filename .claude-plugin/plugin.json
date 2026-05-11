@@ -1,0 +1,7 @@
+{
+  "name": "ljg-xray-article",
+  "description": "Wisdom X-Ray Scanner — extracts wisdom cores from articles using 4-layer funnel methodology. Produces org-mode output with ASCII art.",
+  "author": {
+    "name": "lijigang"
+  }
+}
