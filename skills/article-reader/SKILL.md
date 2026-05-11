@@ -44,13 +44,30 @@ user_invocable: true
 
 如果抓取失败或内容明显残缺（被 paywall / JS 渲染遮蔽），直接告诉用户，让他粘贴正文，不要硬撑。
 
-### 步骤 2：加载认知参照系
+### 步骤 2：加载 vault 锚定（scoped）
 
-读取以下文件，建立用户的认知基线：
-- `~/Documents/know/soul.md` — 世界观、思维范式、核心信念
-- `~/Documents/know/memory.md` — 长期记忆、知识连接
+读取**仅以下指定路径**——不要扫描整个 vault，不要读取未在此列表中的文件。这是 scoped vault read 防御：vault 是用户的私密知识区，可能包含日记 / 财务 / 个人内容；skill 应该有最小权限。
 
-这些信息**只用来锚定 forcing questions 的角度**（比如知道用户关心 X，就在文章触及 X 时多挖一下），不要把它们直接展示给用户——他自己知道自己是谁。
+**Anchor files**（认知基线，用来调校 forcing questions 的角度）：
+- `{VAULT_PATH}/about.md` — 用户对自己的描述
+- `{VAULT_PATH}/beliefs.md` — 核心信念 / 思维范式
+
+这两个文件**可选**。如果不存在，跳过，不报错。用户可以根据自己的 vault 结构创建并填写。
+
+**Recall scope**（用于在文章触及相关主题时召唤过往笔记）：
+- 仅 `ls` 以下目录的**文件名**，**不读取文件内容**：
+  - `{VAULT_PATH}/inbox/articles/` — 之前读过的文章笔记
+  - `{VAULT_PATH}/articles/` — 已归档的文章笔记（如果用户已 promote 过文章）
+- 当文章触及某个关键词，且 vault 文件名中含有该关键词时，**仅用文件名**作为参考（`[[文件名]]` 双链）来触发 forcing question："你笔记里有篇 `[[X]]`，那篇怎么说？"
+
+**禁止的访问**：
+- 不读取 `{VAULT_PATH}/_private/`、`{VAULT_PATH}/journal/`、`{VAULT_PATH}/daily/` 或任何下划线 / 点开头的目录
+- 不递归读取整个 vault
+- 不读取 anchor files 之外的任何文件正文
+
+这些限制比"更智能的检索"重要。深度召唤（embedding、内容匹配）是后续迭代的事，第一版用最受限的 scope，宁可少召唤错召唤也不要泄露隐私。
+
+锚定信息**只用来调校 forcing questions 的角度**（比如知道用户关心 X，就在文章触及 X 时多挖一下），不要把它们直接展示给用户——他自己知道自己是谁。
 
 ### 步骤 3：拆文章（不展示给用户）
 
