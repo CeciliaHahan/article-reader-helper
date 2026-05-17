@@ -72,7 +72,8 @@ mode: Builder
 1. **Forcing questions 的设计** — 语气、密度、触发时机、何时该 challenge 何时该让你过
 2. **vault 召唤的智能化** — 从 dumb grep 升级到 embedding，做跨笔记关联
 3. **输出格式打磨** — 跟你 vault 里现有 article note 格式完美对齐，让它"看起来不像 AI 写的"
-4. **入口扩展（可选）** — 浏览器 bookmarklet 把 URL 喂给 skill；iPhone share sheet 同理。**都不是新 UI，只是新触发方式**
+4. **Cecilia inline comments 支持** — 当笔记里出现 `%%CB：...%%`，不改原文，在 comment 下方用 `> [!answer] Codex 回答` callout 做 5 岁版解释，作为阅读中途的概念澄清层
+5. **入口扩展（可选）** — 浏览器 bookmarklet 把 URL 喂给 skill；iPhone share sheet 同理。**都不是新 UI，只是新触发方式**
 
 **永远不需要 Obsidian 插件** —— 除非有一天你发现"对话式读"本质上输给了"页面内嵌读"。但这是一个未来才需要回答的问题。
 

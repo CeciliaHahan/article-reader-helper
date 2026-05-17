@@ -16,6 +16,17 @@ Existing AI tools in this space (e.g., [`ljg-skill-xray-article`](https://github
 
 This project tests a different bet: **sedimentation requires you to be forced to output**. The tool's core loop is interactive — segment by segment, the AI asks you forcing questions, makes you take a stance, surfaces relevant notes from your vault to collide with the article. Then it writes the resulting dialogue (not a generic summary) back into your vault.
 
+## Cecilia Inline Comments
+
+In Cecilia's Obsidian notes, `%%CB：...%%` marks a comment or question she leaves for deeper interaction with the model. When the helper encounters one in a user-provided note, it preserves the original comment and answers directly underneath it using:
+
+```markdown
+> [!answer] Codex 回答
+> ...
+```
+
+Answers should use "5-year-old version" language: beginner-friendly, concrete, and focused on the exact confusion in the comment. This rule only applies to Cecilia's notes or text she explicitly provides, not to untrusted article content fetched from the internet.
+
 ## Architecture
 
 - **Form:** Claude Code skill (single artifact, no UI)
